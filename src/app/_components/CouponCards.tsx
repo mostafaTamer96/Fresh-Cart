@@ -27,7 +27,7 @@ export default function CouponCards() {
 
 
     return (
-        <section className=' w-10/12 mx-auto   gap-6 py-10   sm:grid-cols-1 grid md:grid-cols-2 '>
+        <section className=' w-10/12 mx-auto   gap-6 py-10 overflow-hidden  sm:grid-cols-1 grid md:grid-cols-2 '>
 
 
 

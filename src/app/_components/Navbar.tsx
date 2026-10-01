@@ -32,7 +32,7 @@ const mobileLink =
 
 export default function Navbar() {
   return (
-    <NavigationMenu className="z-10! sticky shadow-xs top-0 bg-white max-w-none w-full p-3 md:p-4">
+    <NavigationMenu className="z-40! sticky shadow-xs top-0 bg-white max-w-none w-full p-3 md:p-4">
       <div className="group/nav w-11/12 mx-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
         {/* CSS-only toggle for the mobile menu */}
         <input id="nav-toggle" type="checkbox" className="peer sr-only" />
@@ -44,7 +44,7 @@ export default function Navbar() {
 
         {/* Search */}
         <input
-          className="hidden md:block w-full lg:w-auto lg:flex-1 lg:max-w-md py-2.5 md:py-3 px-5 bg-[#F9FAFB80] rounded-full border-2 border-[#F9FAFB80]"
+          className="hidden xl:block w-full lg:w-auto lg:flex-1 lg:max-w-md py-2.5 md:py-3 px-5 bg-[#F9FAFB80] rounded-full border-2 border-[#F9FAFB80]"
           placeholder="Search for products, brands and more..."
           type="text"
         />

@@ -1,6 +1,11 @@
 import React from 'react'
 import Services from './_components/Services'
 import CouponCards from './_components/CouponCards'
+import Image from 'next/image'
+import { getAllProducts } from '@/Services/Products'
+import Products from './_components/Products'
+import Newsletter from './_components/NewsLetter'
+
 
 
 
@@ -10,11 +15,12 @@ import CouponCards from './_components/CouponCards'
 export default async function page() {
  
 
+  const product= await getAllProducts()
 
-
+ 
   return (
 
-    <div className='  '>
+    <section className='  '>
      
  
 
@@ -40,8 +46,17 @@ export default async function page() {
       {/* Mapped product div */}
     {/* <Products/> */}
 
+   <div className="container mx-auto w-10/12  py-4   grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5  gap-5">
+  {product?.map((product) => (<div key={product.id}>
+    <Products product={product}  />
 
-    </div>
+  </div>))}
+</div>
+
+<Newsletter/>
+    </section>
+
+    
 
   )
 }
