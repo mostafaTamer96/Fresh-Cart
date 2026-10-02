@@ -14,7 +14,7 @@ const prps = [
 
         <section>
             <div className="  bg-[#F9FAFB] ">
-                <div className="mx-auto  w-10/12   py-8 px-4 sm:px-6 lg:px-8">
+                <div className="mx-auto  w-full   py-8 px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
 
                         {/* Card 1 */}

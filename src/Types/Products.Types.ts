@@ -3,7 +3,7 @@ export  interface productType{
   sold:number,
   ratingsQuantity:number,
   id:string,
-  price:string,
+  price:number,
   quantity:string,
   description:string
   slug:string,

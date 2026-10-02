@@ -12,9 +12,9 @@ interface productTypeProps {
 
 
 export default function Products({ product }: productTypeProps) {
-  const BeforeDiscount:number =product.price;
+  const priceBeforeDiscount:number =product.price;
   const priceAfterDiscount :number | undefined =product.priceAfterDiscount
-  const discountPercentage :number= priceAfterDiscount ? Math.round(((BeforeDiscount - priceAfterDiscount) / priceBeforeDiscount) * 100):0
+  const discountPercentage :number= priceAfterDiscount ? Math.round(((priceBeforeDiscount - priceAfterDiscount) / priceBeforeDiscount) * 100):0
 
   return (
     <>

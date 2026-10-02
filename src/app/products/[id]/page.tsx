@@ -9,7 +9,16 @@ import { FaTruckFast } from 'react-icons/fa6'
 import { IoIosRefresh } from 'react-icons/io'
 import ProductTabs from '@/app/_components/ProductTabs';
 
-export default async function page({ params }) {
+
+
+  interface ParamsProps {
+  params: Promise<{
+    id: string;
+  }>;
+}
+
+
+export default async function page( { params }:ParamsProps) {
   console.log("props from dynamic routing", params)
   const myParams = await params
   console.log("myParams ", myParams)
@@ -38,7 +47,7 @@ export default async function page({ params }) {
         <BreadcrumbList>
           <BreadcrumbItem className='flex items-center'>
             <FaHome />
-            <BreadcrumbLink className={btnClass} href="#"> Home</BreadcrumbLink>
+            <BreadcrumbLink className={btnClass} href="/"> Home</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
         

@@ -2,6 +2,10 @@ import React from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FaBolt, FaHome, FaShoppingCart, FaStar, FaShieldAlt, FaTruck, FaCheck, FaBoxOpen, FaRegStar } from 'react-icons/fa'
 import { IoIosRefresh } from 'react-icons/io'
+
+
+
+
 export default function ProductTabs({product}:any) {
     console.log("product from prps",product)
 
