@@ -1,18 +1,60 @@
-
+"use client"
 import { FaFacebook, FaGoogle, FaShieldAlt, FaStar } from 'react-icons/fa'
-
+import React from 'react'
 import { IoIosPersonAdd } from "react-icons/io";
 import { FaTruckFast } from 'react-icons/fa6'
 import Link from 'next/link'
 import { Input } from '@/components/ui/input';
+import { Controller, useForm } from 'react-hook-form';
+import { Field, FieldDescription, FieldError, FieldLabel } from '@/components/ui/field';
+import { Checkbox } from "@/components/ui/checkbox"
+import {  FieldGroup } from "@/components/ui/field"
 
-export default function Signup() {
+import { zodResolver } from '@hookform/resolvers/zod';
+import { signUpSchemaType } from './signUp.Types';
+import { signUpSchema } from './signUp.schema';
+import { postSignUp } from '@/Services/Products';
+import { useRouter } from 'next/navigation';
+
+
+
+
+
+export default function page() {
+  
+  const router=useRouter()
 
   const services = [
     { title: "Premium Quality", description: "Premium quality products sourced from trusted suppliers.", icon: FaStar, key: "star" },
     { title: "Fast Delivery", description: "Same-day delivery available in most areas", icon: FaTruckFast, key: "truck" },
     { title: "Secure Shopping", description: "Your data and payments are completely secure", icon: FaShieldAlt, key: "shield" }
   ]
+
+
+  const form =useForm<signUpSchemaType>({
+    defaultValues:{
+    name: "",
+    email:"",
+    password:"",
+    rePassword:"",
+    phone:""
+    },
+    resolver:zodResolver(signUpSchema)
+  }
+
+)
+
+
+  async  function handelSignUp(signUpFormInfo:signUpSchemaType){
+
+     const resp = await postSignUp(signUpFormInfo)
+
+  if (resp.message === "success") {
+    router.push("/login")
+  }
+
+
+  }
 
   return (
     <>
@@ -90,31 +132,184 @@ export default function Signup() {
 
           <div className="divider relative w-full h-0.5 bg-gray-300/30 my-4 flex items-center before:content-['or'] before:absolute before:top-1/2 before:left-1/2 before:-translate-1/2 before:bg-white before:px-4" />
 
-          <form>
-            <div className='my-2'>
-              <label htmlFor="name" className='block text-sm font-medium text-[#364153] mb-1'>Name*</label>
-              <Input id="name" placeholder="Ali" autoComplete="off" />
-            </div>
+          <form onSubmit={form.handleSubmit(handelSignUp)}>
+
+
+
 
             <div className='my-2'>
-              <label htmlFor="email" className='block text-sm font-medium text-[#364153] mb-1'>Email*</label>
-              <Input id="email" placeholder="aLi@example.com" autoComplete="off" />
+  
+<Controller
+  name="name"
+
+  control={form.control}
+
+  render={({ field, fieldState }) => (
+    <Field data-invalid={fieldState.invalid}>
+      <FieldLabel className='text-[#364153 font-medium text-base]'  htmlFor={field.name}>Name*</FieldLabel>
+      <Input
+        {...field}
+        id={field.name}
+        aria-invalid={fieldState.invalid}
+        placeholder="Ali"
+        autoComplete="off"
+      />
+     
+      {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+    </Field>
+  )}
+/>
+
+
             </div>
 
-            <div className='my-2'>
-              <label htmlFor="password" className='block text-sm font-medium text-[#364153] mb-1'>Password*</label>
-              <Input id="password" type="password" placeholder="create a strong password" autoComplete="off" />
+
+
+
+
+
+
+
+
+
+
+ <div className='my-2'>
+  
+<Controller
+  name="email"
+
+  control={form.control}
+
+  render={({ field, fieldState }) => (
+    <Field data-invalid={fieldState.invalid}>
+      <FieldLabel className='block text-sm font-medium text-[#364153] mb-1'  htmlFor={field.name}>Email*</FieldLabel>
+      <Input
+        {...field}
+        id={field.name}
+        aria-invalid={fieldState.invalid}
+        placeholder="aLi@example.com"
+        autoComplete="off"
+      />
+     
+      {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+    </Field>
+  )}
+/>
+
+
             </div>
 
-            <div className='my-2'>
-              <label htmlFor="rePassword" className='block text-sm font-medium text-[#364153] mb-1'>Confirm Password*</label>
-              <Input id="rePassword" type="password" placeholder="confirm your password" autoComplete="off" />
+
+
+
+
+
+
+ <div className='my-2'>
+  
+<Controller
+  name="password"
+
+  control={form.control}
+
+  render={({ field, fieldState }) => (
+    <Field data-invalid={fieldState.invalid}>
+      <FieldLabel className='block text-sm font-medium text-[#364153] mb-1'  htmlFor={field.name}>Password*</FieldLabel>
+      <Input
+        {...field}
+        id={field.name}
+        aria-invalid={fieldState.invalid}
+        placeholder="create a strong password"
+        autoComplete="off"
+         type='password'
+      />
+     
+      {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+    </Field>
+  )}
+/>
+
+
             </div>
 
-            <div className='my-2'>
-              <label htmlFor="phone" className='block text-sm font-medium text-[#364153] mb-1'>Phone Number*</label>
-              <Input id="phone" placeholder="Enter an Egyptian number 01000000000" autoComplete="off" />
+
+
+
+ <div className='my-2'>
+  
+<Controller
+  name="rePassword"
+
+  control={form.control}
+
+  render={({ field, fieldState }) => (
+    <Field data-invalid={fieldState.invalid}>
+      <FieldLabel className='block text-sm font-medium text-[#364153] mb-1'  htmlFor={field.name}>Confirm Password*</FieldLabel>
+      <Input
+        {...field}
+        id={field.name}
+        aria-invalid={fieldState.invalid}
+        placeholder="confirm your password"
+        autoComplete="off"
+        type='password'
+      />
+     
+      {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+    </Field>
+  )}
+/>
+
+
             </div>
+
+
+
+
+
+ <div className='my-2'>
+  
+<Controller
+  name="phone"
+
+  control={form.control}
+
+  render={({ field, fieldState }) => (
+    <Field data-invalid={fieldState.invalid}>
+      <FieldLabel className='block text-sm font-medium text-[#364153] mb-1'  htmlFor={field.name}>Phone Number*</FieldLabel>
+      <Input
+        {...field}
+        id={field.name}
+        aria-invalid={fieldState.invalid}
+        placeholder="+201000000000"
+        autoComplete="on"
+        
+        
+      />
+     
+      {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+    </Field>
+  )}
+/>
+
+
+            </div>
+
+
+<div className="checkBox">
+
+  <FieldGroup className="mx-auto my-2 py-4">
+      <Field orientation="horizontal">
+        <Checkbox id="terms-checkbox-basic" className={"focus:bg-[#16A34A] focus:border-transparent focus:text-white" } name="terms-checkbox-basic" />
+        <FieldLabel htmlFor="terms-checkbox-basic">
+          <span> <span className='text-[#364153]'>  I agree to the </span>  <span className='text-[#16A34A]'>   Terms of Service  </span>   <span className='text-[#364153]'>and </span> <span className='text-[#16A34A]'> Privacy Policy </span> *   </span>
+        </FieldLabel>
+      </Field>
+    </FieldGroup>
+
+
+</div>
+            
+
 
             <button className='bg-[#16A34A] w-full h-10 rounded-2xl cursor-pointer flex items-center justify-center gap-3 text-white hover:bg-[#15803D] transition'>
               <span><IoIosPersonAdd className='w-[18.5px] h-[15.75px]' /></span>

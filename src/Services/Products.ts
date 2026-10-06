@@ -1,4 +1,10 @@
+
+import {   signUpErrorType, signUpResponseType, signUpSchemaType } from './../app/signup/signUp.Types';
 import { categoryType, productType } from "@/Types/Products.Types"
+import axios from "axios";
+import { useServerSignUp } from './Auth.services';
+import { toast } from 'sonner';
+
 
  export  async function getAllProducts(): Promise<productType[]|null >{
     try {    
@@ -47,3 +53,33 @@ return finalResp.data
     return null
   }
    }
+
+
+
+
+export async function postSignUp(signUpFormInfo:signUpSchemaType){
+
+const resp = await useServerSignUp(signUpFormInfo)   
+console.log("resp from user server",resp)
+
+if (resp.message === "success") {
+
+  toast.success(resp.message, {
+     position: "top-right",
+    richColors:true,
+    duration: 3000  // 3 seconds
+  })
+} 
+
+else {
+  toast.error(resp.message, { 
+    position: "top-right",
+  richColors:true,
+
+ })
+}
+  // console.log("finally here",resp.data)
+//  return resp.data
+   
+return resp
+}
