@@ -1,12 +1,13 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
 import Image from "next/image"
 import { FiMenu, FiX } from "react-icons/fi"
 import { FaHeadset, FaShoppingCart, FaWallet } from "react-icons/fa"
 import { CiHeart } from "react-icons/ci"
-
+import Link from "next/link";
+import { FaTruck, FaGift, FaPhoneAlt, FaRegUser, FaUserPlus } from "react-icons/fa";
+import { FiMail } from "react-icons/fi";
 import { cn } from "@/lib/utils"
 import {
   NavigationMenu,
@@ -24,6 +25,10 @@ const Categories: { title: string; href: string }[] = [
   { title: "Women's Fashion", href: "/docs/primitives/tabs" },
   { title: "Men's Fashion", href: "/docs/primitives/tooltip" },
 ]
+const SignIn = "/login";
+const SignUp = "/signup";
+ 
+const hover = "transition-colors duration-200 hover:text-green-600";
 
 const linkStyle = "bg-transparent hover:bg-transparent hover:text-[#16a34a]"
 const desktopLink = cn(navigationMenuTriggerStyle(), linkStyle)
@@ -31,8 +36,58 @@ const mobileLink =
   "block px-2 py-3 font-medium text-[#364153] hover:text-[#16a34a] hover:bg-transparent"
 
 export default function Navbar() {
+  
   return (
+    <>
+
+      <div className=" border-b border-gray-200 bg-white text-sm text-gray-600">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-2.5 sm:px-6">
+        {/* Left: promos */}
+        <ul className="flex items-center gap-6">
+          <li className={`flex cursor-pointer items-center gap-2 ${hover}`}>
+            <FaTruck className="text-green-600" aria-hidden="true" />
+            <span>Free Shipping on Orders 500 EGP</span>
+          </li>
+          <li className={`hidden cursor-pointer items-center gap-2 md:flex ${hover}`}>
+            <FaGift className="text-green-600" aria-hidden="true" />
+            <span>New Arrivals Daily</span>
+          </li>
+        </ul>
+ 
+        {/* Right: contact + auth */}
+        <ul className="flex items-center gap-5">
+          <li className="hidden lg:block">
+            <a href="tel:+18001234567" className={`flex items-center gap-2 ${hover}`}>
+              <FaPhoneAlt className="text-xs" aria-hidden="true" />
+              <span>+1 (800) 123-4567</span>
+            </a>
+          </li>
+          <li className="hidden lg:block">
+            <a href="mailto:support@freshcart.com" className={`flex items-center gap-2 ${hover}`}>
+              <FiMail aria-hidden="true" />
+              <span>support@freshcart.com</span>
+            </a>
+          </li>
+ 
+          <li className="hidden h-4 w-px bg-gray-300 lg:block" aria-hidden="true" />
+ 
+          <li>
+            <Link href={SignIn} className={`flex items-center gap-2 ${hover}`}>
+              <FaRegUser aria-hidden="true" />
+              <span>Sign In</span>
+            </Link>
+          </li>
+          <li>
+            <Link href={SignUp} className={`flex items-center gap-2 ${hover}`}>
+              <FaUserPlus aria-hidden="true" />
+              <span>Sign Up</span>
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </div>
     <NavigationMenu className="z-40! sticky shadow-xs top-0 bg-white max-w-none w-full p-3 md:p-4">
+    
       <div className="group/nav w-11/12 mx-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
         {/* CSS-only toggle for the mobile menu */}
         <input id="nav-toggle" type="checkbox" className="peer sr-only" />
@@ -182,6 +237,7 @@ export default function Navbar() {
         </div>
       </div>
     </NavigationMenu>
+    </>
   )
 }
 

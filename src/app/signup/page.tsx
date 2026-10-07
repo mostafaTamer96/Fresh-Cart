@@ -6,15 +6,17 @@ import { FaTruckFast } from 'react-icons/fa6'
 import Link from 'next/link'
 import { Input } from '@/components/ui/input';
 import { Controller, useForm } from 'react-hook-form';
-import { Field, FieldDescription, FieldError, FieldLabel } from '@/components/ui/field';
+import { Field, FieldError, FieldLabel } from '@/components/ui/field';
 import { Checkbox } from "@/components/ui/checkbox"
 import {  FieldGroup } from "@/components/ui/field"
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signUpSchemaType } from './signUp.Types';
 import { signUpSchema } from './signUp.schema';
-import { postSignUp } from '@/Services/Products';
+
 import { useRouter } from 'next/navigation';
+import { postSignUp } from '@/Services/Auth';
+import { toast } from 'react-toastify';
 
 
 
@@ -48,9 +50,18 @@ export default function page() {
   async  function handelSignUp(signUpFormInfo:signUpSchemaType){
 
      const resp = await postSignUp(signUpFormInfo)
-
+     console.log("resp from ",resp)
+    // myCookies.set("account token")
   if (resp.message === "success") {
-    router.push("/login")
+    toast.success(resp.message)
+  
+    setTimeout(() => {
+  router.push("/login")
+
+}, 3000);
+  }
+  else {
+    toast.error(resp.message)
   }
 
 

@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fresh-cart
 
-## Getting Started
+A modern e-commerce web application built with React/Next.js, featuring product browsing, dynamic product pages, and a complete authentication flow.
 
-First, run the development server:
+> 🚧 **Status:** In development. Core pages and authentication are complete; more features are on the way.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Features Completed
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🏠 Homepage
+- Data fetching from the API and rendering of the content
+- Fully responsive UI
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🛍️ Products
+- Dynamic routing for individual product pages
+- Product data fetched and displayed per product
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🔐 Authentication
+- **Sign Up**: create a new account
+- **Sign In**: log in with existing credentials
+- **Forgot Password**: a verification code is sent to the user's email to reset the password
+- Form validation on every form using **React Hook Form** and **Zod**
+- Fully typed data with **TypeScript**
 
-## Learn More
+## 🛠️ Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+| Category        | Technology                  |
+| --------------- | --------------------------- |
+| Framework       | [React / Next.js]           |
+| Language        | TypeScript                  |
+| Styling         | Tailwind CSS                |
+| UI Components   | shadcn/ui                   |
+| Forms           | React Hook Form             |
+| Validation      | Zod                         |
+| Data Fetching   | [Axios / Fetch / React Query] |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📁 Project Structure

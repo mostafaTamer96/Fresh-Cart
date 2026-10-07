@@ -11,6 +11,7 @@ export interface signUpResponseType{
     message:string,
     user:userSignUpType,
     token:string
+  status:number
 
 }
 export interface userSignUpType{
@@ -21,7 +22,8 @@ export interface userSignUpType{
 
 export interface signUpErrorType{
         statusMsg:string,
-        message:string
+        message:string,
+        status:number
 }
 
 

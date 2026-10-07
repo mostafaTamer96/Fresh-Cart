@@ -1,3 +1,4 @@
+"use client"
 import Image from 'next/image'
 import React from 'react'
 import logInImage from "@/images/logInImageCart.png"
@@ -8,7 +9,18 @@ import { FaStar } from "react-icons/fa";
 import { HiUserGroup } from "react-icons/hi2";
 
 import Link from 'next/link';
+import { logInSchemaType } from './login.Types';
+import { Controller, useForm } from 'react-hook-form';
+import { signInSchema } from './login.schema'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Field, FieldError, FieldLabel } from '@/components/ui/field'
+import { Input } from '@/components/ui/input'
+import { postSignIn } from '@/Services/Auth'
+import { useRouter } from 'next/navigation'
+import { toast } from 'react-toastify'
 export default function page() {
+
+ const router= useRouter()
 
     const services=[
         {icon:FaTruck, className:"text-[#6a7282] text-base font-medium", text:"Free delivery" ,key:"truck"},
@@ -19,8 +31,42 @@ export default function page() {
                {icon:FaLock  , className:"text-[#6A7282] text-base font-medium", text:"SSL Secured" ,key:"Secured"},
       {icon:HiUserGroup   , className:"text-[#6A7282] text-base font-medium", text:"50K+ Users" ,key:"ppl"},
       {icon:FaStar   , className:"text-[#6A7282] text-base font-medium", text:"4.9 Rating" ,key:"star"},
-
     ]
+
+ const form =useForm<logInSchemaType>({
+    defaultValues:{
+    email:"",
+    password:"",
+    },
+    resolver:zodResolver(signInSchema)
+  }
+)
+
+ async function handelSignIn(signInFormInfo:logInSchemaType){
+  console.log("signInValues",signInFormInfo)
+  const resp=await postSignIn(signInFormInfo)
+  console.log("resp of postsign in in pag.tsx",resp)
+
+if(resp.message==="success"){
+toast.success(resp.message)
+setTimeout(() => {
+  router.push("/")
+  
+}, 3000);
+
+}
+
+else {
+  toast.error(resp.message)
+}
+
+
+
+
+
+}
+
+
   return (
     <>
    <div className="w-10/12 container mx-auto py-16 px-4">
@@ -60,18 +106,7 @@ export default function page() {
 
     </div>
 
-    {/* <div className=" right w-full lg:w-1/2">
-      sdfsd
-
-
-
-
-
-
-
-
-      
-    </div> */}
+ 
 
 <div className="right w-full ">
   <div className="bg-white rounded-2xl shadow-xl p-8 lg:p-12">
@@ -95,20 +130,101 @@ export default function page() {
 
     <div className="divider relative w-full h-0.5 bg-gray-300/30 my-4 flex items-center before:content-['OR'] before:absolute before:top-1/2 before:left-1/2 before:-translate-1/2 before:bg-white before:px-4" />
 
-    <form>
-      <div className="my-2">
-        <label htmlFor="email" className="block text-sm font-medium text-[#364153] mb-1">
-          Email*
-        </label>
-        {/* <Input id="email" placeholder="aLi@example.com" autoComplete="off" /> */}
-      </div>
+    <form onSubmit={form.handleSubmit(handelSignIn)}>
+   
 
-      <div className="my-2">
-        <label htmlFor="password" className="block text-sm font-medium text-[#364153] mb-1">
-          Password*
-        </label>
-        {/* <Input id="password" type="password" placeholder="create a strong password" autoComplete="off" /> */}
-      </div>
+
+
+
+
+
+
+
+ <div className='my-2'>
+  
+<Controller
+  name="email"
+
+  control={form.control}
+
+  render={({ field, fieldState }) => (
+    <Field data-invalid={fieldState.invalid}>
+      <FieldLabel className='block text-sm font-medium text-[#364153] mb-1'  htmlFor={field.name}>Email*</FieldLabel>
+      <Input
+        {...field}
+        id={field.name}
+        aria-invalid={fieldState.invalid}
+        placeholder="aLi@example.com"
+        autoComplete="off"
+      />
+     
+      {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+    </Field>
+  )}
+/>
+
+
+            </div>
+
+
+
+
+
+
+
+ <div className="my-2">
+  <Controller
+    name="password"
+    control={form.control}
+    render={({ field, fieldState }) => (
+      <Field data-invalid={fieldState.invalid}>
+        <div className="flex items-center justify-between mb-1">
+          <FieldLabel
+            className="text-sm font-medium text-[#364153]"
+            htmlFor={field.name}
+          >
+            Password*
+          </FieldLabel>
+
+          <Link
+            href="/forgetPassword"
+            className="text-sm text-green-600 hover:text-green-700 font-medium"
+          >
+            Forget Password?
+          </Link>
+        </div>
+
+        <Input
+          {...field}
+          id={field.name}
+          aria-invalid={fieldState.invalid}
+          placeholder="create a strong password"
+          autoComplete="off"
+          type="password"
+        />
+
+        {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+      </Field>
+    )}
+  />
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+    
 
       <button className="bg-[#16A34A] w-full h-10 rounded-lg my-4 cursor-pointer flex items-center justify-center gap-3 text-white hover:bg-[#15803D] transition">
         <span className="font-semibold text-base">Sign In</span>
