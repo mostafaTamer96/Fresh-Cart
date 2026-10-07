@@ -20,6 +20,7 @@ A modern e-commerce web application built with React/Next.js, featuring product 
 - **Forgot Password**: a verification code is sent to the user's email to reset the password
 - Form validation on every form using **React Hook Form** and **Zod**
 - Fully typed data with **TypeScript**
+dsfsd
 
 ## 🛠️ Tech Stack
 
