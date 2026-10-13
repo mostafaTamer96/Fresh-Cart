@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { CiHeart } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
-import { LuEye, LuRefreshCcw } from "react-icons/lu";
+import { LuEye, LuPlus, LuRefreshCcw } from "react-icons/lu";
 
 interface productTypeProps {
   product: productType;
@@ -18,14 +18,7 @@ export default function Products({ product }: productTypeProps) {
 
   return (
     <>
-      {/* <div  className="relative w-60 h-60">
-      <Image 
-        src={product.imageCover} 
-        alt={product.name} 
-        fill 
-        className="object-cover"
-      />
-    </div> */}
+    
 
       <section className="PRODUCTS   ">
        
@@ -114,27 +107,35 @@ export default function Products({ product }: productTypeProps) {
 
             {/* PRICES */}
             <div className="  ">
-              <div className="flex  justify-between items-center gap-2 ">
-                <div>
-                  <span>
-                    {product.priceAfterDiscount ? (
-                      <div>
-                        <span className="mx-3 text-lg text-[#16A34A] font-bold">
-                          {product.priceAfterDiscount} EGP
-                        </span>
+           <div className="flex items-center justify-between gap-2">
+  <div>
+    <span>
+      {product.priceAfterDiscount ? (
+        <div>
+          <span className="mx-3 text-lg font-bold text-[#16A34A]">
+            {product.priceAfterDiscount} EGP
+          </span>
 
-                        <span className="line-through font-bold text-sm text-[#6A7282]">
-                          {product.price} EGP
-                        </span>
-                      </div>
-                    ) : (
-                      <span className="text-[#1E2939] font-bold text-lg">
-                        {product.price} EGP
-                      </span>
-                    )}
-                  </span>
-                </div>
-              </div>
+          <span className="text-sm font-bold text-[#6A7282] line-through">
+            {product.price} EGP
+          </span>
+        </div>
+      ) : (
+        <span className="text-lg font-bold text-[#1E2939]">
+          {product.price} EGP
+        </span>
+      )}
+    </span>
+  </div>
+
+  <button
+    type="button"
+    aria-label={`Add ${product.title} to cart`}
+    className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-[#16A34A] text-2xl font-semibold text-white"
+  >
+    <LuPlus />
+  </button>
+</div>
             </div>
           </div>
       

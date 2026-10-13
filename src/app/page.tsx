@@ -2,14 +2,12 @@ import React, { lazy, Suspense } from 'react'
 import Services from './_components/Services'
 import CouponCards from './_components/CouponCards'
 import Image from 'next/image'
-import { getAllCategories, getAllProducts } from '@/Services/Products'
+import {  getAllProducts } from '@/Services/Products'
 import Products from './_components/Products'
 import Newsletter from './_components/NewsLetter'
-import AllCategories from './_components/AllCategories'
 import MySlider from './_components/MySlider'
 
 import sliderImage from "@/images/sliderPic.png"
-import secondImage from "@/images/e18063f3aec6ff662019fb987d6290e1655d93be.png"
 import { CircularProgress } from 'react-loader-spinner'
 
 

@@ -1,11 +1,6 @@
-import {
-  signUpErrorType,
-  signUpResponseType,
-  signUpSchemaType,
-} from "./../app/signup/signUp.Types";
-import { categoryType, productType } from "@/Types/Products.Types";
-import axios from "axios";
-import { useServerSignUp } from "./Auth.services.Server";
+
+import { AllBrands, categoryType, productType } from "@/Types/Products.Types";
+
 
 
 export async function getAllProducts(): Promise<productType[] | null> {
@@ -55,3 +50,24 @@ export async function getAllCategories(): Promise<categoryType[] | null> {
     return null;
   }
 }
+
+
+export async function getAllBrands(): Promise<AllBrands[] | undefined> {
+    try {
+        const response = await fetch("https://ecommerce.routemisr.com/api/v1/brands", {
+            cache: "force-cache"
+        })
+
+        const finalResponse = await response.json()
+
+        return finalResponse.data
+
+    } catch (error) {
+        console.log(error)
+        return undefined
+
+    }
+
+
+}
+

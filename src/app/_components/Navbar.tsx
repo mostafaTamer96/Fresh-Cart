@@ -112,7 +112,7 @@ export default function Navbar() {
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-              <Link className={desktopLink} href="/product">Shop</Link>
+              <Link className={desktopLink} href="/products">Shop</Link>
             </NavigationMenuItem>
 
             <NavigationMenuItem className="bg-transparent hover:bg-transparent">
@@ -191,7 +191,7 @@ export default function Navbar() {
               <Link href="/" className={mobileLink}>Home</Link>
             </li>
             <li>
-              <Link href="/product" className={mobileLink}>Shop</Link>
+              <Link href="/products" className={mobileLink}>Shop</Link>
             </li>
 
             <li>

@@ -44,3 +44,12 @@ export interface brandType{
    slug:string,
    image:string
 }
+
+
+export interface AllBrands {
+  _id: string,
+  name: string,
+  slug: string,
+  image: string
+
+}
