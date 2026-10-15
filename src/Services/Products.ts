@@ -1,5 +1,5 @@
 
-import { AllBrands, categoryType, productType } from "@/Types/Products.Types";
+import { AllBrands, Category, categoryType, productType } from "@/Types/Products.Types";
 
 
 
@@ -71,3 +71,62 @@ export async function getAllBrands(): Promise<AllBrands[] | undefined> {
 
 }
 
+export async function getCategories(): Promise<Category[] | null> {
+    try {
+
+        const response = await fetch("https://ecommerce.routemisr.com/api/v1/categories", {
+            cache: "force-cache",
+        })
+        const finalResponse = await response.json()
+        return finalResponse.data
+
+
+    } catch (error) {
+        console.log(error)
+        return null
+
+
+    }
+}
+
+
+
+export async function getCategoryById(id: string): Promise<Category | undefined> {
+
+    try {
+        const response = await fetch(`https://ecommerce.routemisr.com/api/v1/categories/${id}`, {
+            cache: "force-cache"
+        })
+        const finalResponse = await response.json()
+        console.log("final resp in categoryId is ", finalResponse)
+
+        return finalResponse.data
+
+    } catch (error) {
+        console.log("error fro categoryID",error)
+        return undefined
+
+
+    }
+
+}
+
+
+export async function getAllSubCategories(): Promise<AllSubCategories[] | undefined> {
+    try {
+        const response = await fetch("https://ecommerce.routemisr.com/api/v1/subcategories", {
+            cache: "force-cache"
+        })
+
+        const finalResponse = await response.json()
+
+        return finalResponse.data
+
+    } catch (error) {
+        console.log(error)
+        return undefined
+
+    }
+
+
+}

@@ -26,15 +26,16 @@ const AllCategorieslazyLoading= lazy (()=> import ('./_components/AllCategories'
 
     <section className='  '>
      
-<MySlider
+<MySlider 
+
   slides={[
    
    {
    image: `${sliderImage.src}`,
       title: 'Fresh Products Delivered to your Door',
       subtitle: 'Get 20% off your first order',
-      primaryButton: { label: 'Shop Now', href: '/shop', color: '#00C950' },
-      secondaryButton: { label: 'Learn More', href: '/shop' },
+      primaryButton: { label: 'Shop Now', href: '/products', color: '#00C950' },
+      secondaryButton: { label: 'Learn More', href: '/deals' },
     },
    
    
@@ -42,15 +43,15 @@ const AllCategorieslazyLoading= lazy (()=> import ('./_components/AllCategories'
       image: `${sliderImage.src}`,
       title: 'Fast & Free Delivery',
       subtitle: 'Same day delivery available',
-      primaryButton: { label: 'Order Now', href: '/shop', color: '#9333ea' },
-      secondaryButton: { label: 'Delivery Info', href: '/delivery' },
+      primaryButton: { label: 'Order Now', href: '/products', color: '#9333ea' },
+      secondaryButton: { label: 'Delivery Info', href: '/about' },
     },
     {
    image: `${sliderImage.src}`,
       title: 'Premium Quality Guaranteed',
       subtitle: 'Fresh from farm to your table',
-      primaryButton: { label: 'Shop Now', href: '/shop', color: '#2563eb' },
-      secondaryButton: { label: 'Learn More', href: '/about' },
+      primaryButton: { label: 'Shop Now', href: '/products', color: '#2563eb' },
+      secondaryButton: { label: 'Learn More', href: '/delivery' },
     },
 
 
@@ -60,6 +61,7 @@ const AllCategorieslazyLoading= lazy (()=> import ('./_components/AllCategories'
   gradientFrom="#00C950E5"
   gradientTo="#05DF7280"
   gradientDirection="to right"
+
 />
 
       <Services />

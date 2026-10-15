@@ -53,3 +53,19 @@ export interface AllBrands {
   image: string
 
 }
+
+
+export interface Category {
+  _id: string;
+  name: string;
+  slug: string;
+  image: string;
+}
+
+export interface AllSubCategories{
+   _id:string;
+    name: string;
+  slug: string;
+  category: string;
+  image:string;
+}
